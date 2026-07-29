@@ -1,6 +1,6 @@
 # System Design Playground 🎨
 
-> **O simulador de infraestrutura e fluxo de carga interativo baseado em Blueprint para agentes de IA (Antigravity/Gemini).**
+> **O simulador de infraestrutura e fluxo de carga interativo baseado em Blueprint para agentes de IA e IDEs de programação (Antigravity, Cursor, Claude, Codex, etc.).**
 
 ---
 
@@ -26,22 +26,45 @@ No arquivo HTML gerado, você ganha um painel operacional completo:
 
 ---
 
-## 🛠️ Como Instalar no seu Antigravity / Gemini
+## ⚡ Como Acionar a Skill no Chat
 
-Para instalar esta custom skill no seu ambiente local, basta clonar este repositório ou copiar o arquivo `SKILL.md` para a pasta de custom skills da sua IA.
+Você pode chamar e ativar a skill a qualquer momento usando o comando de atalho:
+> `/system-design-playground` ou mencionando **"System Design Playground"**
 
-No macOS/Linux:
-```bash
-# Crie a pasta da skill caso não exista
-mkdir -p ~/.gemini/config/skills/system-design-playground
+---
 
-# Copie o arquivo SKILL.md para lá
-cp SKILL.md ~/.gemini/config/skills/system-design-playground/SKILL.md
-```
+## 🛠️ Como Instalar & Configurar nas IDEs e Agentes
 
-### Como usar no chat:
-Uma vez instalada, você pode invocar a skill digitando ou pedindo:
-> *"Visualizar a arquitetura do projeto usando a skill System Design Playground"*
+Esta skill pode ser portada para qualquer ferramenta de desenvolvimento. Escolha sua IDE ou agente abaixo:
+
+### 1. No Antigravity (Agente oficial do Google DeepMind)
+Como esta skill é nativa da arquitetura do Antigravity, basta salvar o arquivo `SKILL.md` na pasta de skills do seu ambiente.
+
+* **Instalação Global** (Para todos os projetos):
+  Salve em: `~/.gemini/config/skills/system-design-playground/SKILL.md`
+* **Instalação Local** (Apenas no repositório atual):
+  Salve na raiz do projeto em: `.gemini/config/skills/system-design-playground/SKILL.md`
+
+---
+
+### 2. No Cursor (Cursor Rules)
+Para fazer o Cursor agir como o simulador:
+1. Abra o arquivo `.cursorrules` na raiz do seu projeto (se não existir, crie-o).
+2. Copie o conteúdo do arquivo [SKILL.md](SKILL.md) e adicione-o ao arquivo `.cursorrules`.
+3. Pronto! Quando você digitar `/system-design-playground` ou pedir para analisar o tráfego no chat do Cursor, ele gerará o HTML interativo na raiz do seu projeto.
+
+---
+
+### 3. No Claude (Claude Projects / Custom Instructions)
+Se você estiver usando o Claude.ai:
+* **Claude Projects (Recomendado)**: Crie um projeto, clique em **Project Instructions** e cole o conteúdo de [SKILL.md](SKILL.md) lá dentro.
+* **Custom Instructions Globais**: Se não usar projetos, cole o texto de regras da skill nas suas instruções personalizadas de perfil.
+
+---
+
+### 4. No Codex / GitHub Copilot / Outros Editores
+Para ferramentas genéricas que aceitam regras de contexto na workspace:
+* Salve as regras de instrução de sistema no arquivo de regras do seu projeto (ex: `.github/copilot-instructions.md` para o Copilot ou nas configurações de prompts customizados do seu editor).
 
 ---
 
