@@ -2,6 +2,8 @@
 
 > **O simulador de infraestrutura e fluxo de carga interativo baseado em Blueprint para agentes de IA e IDEs de programação (Antigravity, Cursor, Claude, Codex, etc.).**
 
+![System Design Playground Preview](preview.png)
+
 ---
 
 Sabe quando você tenta explicar a arquitetura de um sistema para alguém (especialmente iniciantes ou pessoas não-técnicas) e a pessoa começa a te olhar com aquela cara de *"tá falando grego"*? Ou quando você quer testar cenários de estresse no seu sistema mas não quer derrubar o ambiente? 
