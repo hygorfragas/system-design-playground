@@ -25,6 +25,30 @@ No arquivo HTML gerado, você ganha um painel operacional completo:
 2. **Escale os recursos**: Botões de `+` e `-` nos cards dos componentes (App Server, Banco de Dados, Cache, Fila, Workers) permitem alterar as réplicas ativas em tempo real.
 3. **Veja o gargalo acontecer**: À medida que o tráfego sobe ou você remove réplicas, as conexões mudam de cor (verde 🟢, laranja 🟡, vermelho 🔴) e aceleram a animação, mostrando exatamente onde a sobrecarga vai estourar primeiro.
 4. **Painel de Dicas**: Um painel inteligente diz o que está quebrando e indica os arquivos e pastas do seu projeto que você precisa modificar para resolver.
+5. **Selo de aferição**: O canvas mostra se as bases vieram de medição Locust ou do modelo calibrado (estimado).
+
+---
+
+## 🧪 Aferição de carga (Locust isolado)
+
+Para reduzir chute do modelo, a skill pode ancorar métricas com Locust — **sem tocar produção**.
+
+### Modos (nessa ordem)
+1. **`docker_smoke`** — sobe um compose de smoke isolado, roda Locust na rede interna, coleta métricas e derruba o stack.
+2. **`local_script`** — sem Docker (ou se você recusar o container), roda `loadtest/run-loadtest.sh` só contra localhost/smoke.
+3. **`estimated_calibrated`** — se você pular a execução ou o alvo não estiver disponível, usa um modelo determinístico de capacidade (réplicas × RPS base + curva de latência).
+
+### Consentimento
+O agente **sempre pergunta antes** de subir container ou rodar o script. Sem o seu “sim”, cai no modo estimado.
+
+### Artefatos gerados (no seu projeto)
+- `loadtest/locustfile.py`
+- `loadtest/run-loadtest.sh`
+- `loadtest/docker-compose.loadtest.yml`
+- `loadtest/load-metrics.json` (`source: measured | estimated` + `afericao_mode`)
+
+### Observação final
+Toda execução da skill termina dizendo **qual modo foi usado** (`docker_smoke`, `local_script` ou `estimated_calibrated`) e se as métricas são `measured` ou `estimated`.
 
 ---
 
